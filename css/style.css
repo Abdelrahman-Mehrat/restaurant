@@ -1,0 +1,58 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+p{
+    margin-bottom: 0px !important;
+}
+.navbar-collapse{
+    flex-direction: row-reverse;
+}
+/*  */
+.main-img{
+    min-height: 60vh;
+    background-image: url("assets/main-img.jpg");
+    background-size: cover;
+    position: relative;
+}
+
+.main-img p{
+   font-size: 3rem;
+}
+.main-img::after{
+    content: "";
+    width: 100%;
+    height: 10px;
+    background: rgb(255,255,255);
+    background: linear-gradient(321deg, rgba(255,255,255,1) 0%, rgba(190,0,0,1) 100%);
+    bottom: 0px;
+    position: absolute;
+}
+/*  */
+#seacrh-input{
+    width: 30%;
+    height: 50px;
+    border-radius: 10px 0px 0px 10px;
+}
+#search-button{
+    transition: 0.7s;
+    border-radius: 0px 10px 10px 0px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: 2px solid red;
+    color: red;
+    background-color: white;
+}
+#search-button:hover{
+    background-color: red;
+    border-color: rgb(97, 3, 3);
+    color: white;
+}
+/*  */
+.food-card{
+    border: 2px solid red   ;
+}
+.food-card img{
+    height: 300px;
+}
