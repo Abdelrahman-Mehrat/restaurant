@@ -57,7 +57,11 @@ p {
 .food-card {
   border: 2px solid red;
   background-color: rgb(105, 93, 93);
+  height: 350px;
 }
 .food-card img {
-  height: 300px;
+  height: 200px;
+}
+.card-header {
+  height: 75px;
 }
