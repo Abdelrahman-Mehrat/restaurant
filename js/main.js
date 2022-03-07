@@ -27,7 +27,7 @@ function wrapCards() {
   for (const x of finalData) {
     let img = x.image_url;
     myCard += `
-      <div class="col-lg-4 col-md-6 col-sm-6 col-6  p-3" >
+      <div class="col-lg-4 col-md-6 col-sm-6 col-12  p-3" >
         <div class="card p-3 food-card" data-id="${x.recipe_id}">
           <div class="blurring dimmable image">
               <img class="w-100 card" src="${img}">

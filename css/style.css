@@ -158,6 +158,9 @@ main {
   font-size: 1.8rem;
   text-align: center;
 }
+.post-card li {
+  font-size: 1.2rem;
+}
 .post-card-link {
   padding: 5px 10px;
   border: 1px solid black;
@@ -206,5 +209,16 @@ main {
   .pop-up-ul {
     font-size: 1rem;
     line-height: 1.3;
+  }
+}
+@media screen and (max-width: 780px) {
+  .post-card .post-card-title {
+    font-size: 1.5rem;
+  }
+  .card-header-font {
+    font-size: 1.2rem;
+  }
+  #seacrh-input {
+    width: 60%;
   }
 }
