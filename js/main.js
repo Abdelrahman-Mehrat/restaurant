@@ -4,6 +4,8 @@ let dataContainer = document.querySelector("#collected-data");
 // get data from api
 let mainInput = document.querySelector("#seacrh-input");
 let mainButton = document.querySelector("#search-button");
+let bookMarkDiv = document.querySelector("#showSingleCard");
+
 mainButton.addEventListener("click", getSelectedData);
 let finalData = [];
 async function getSelectedData() {
@@ -14,6 +16,8 @@ async function getSelectedData() {
   selectedData = await selectedData.json();
   finalData = selectedData.recipes;
   console.log(finalData);
+  bookMarkDiv.innerHTML = "";
+  checkHeader();
   wrapCards();
 }
 // <<<<.....................................>>>> //
@@ -29,61 +33,89 @@ function wrapCards() {
               <img class="w-100 card" src="${img}">
           </div>
           <div class="content">
-              <p class="header card-header-font">${x.title}</p>
+              <p class="header card-header-font mb-1">${x.title}</p>
               <div class="meta ">
                   <span class="date card-p-font">Publisher: ${x.publisher}</span>
               </div>
           </div>
           <div class="extra content">
-              <div class="d-flex justify-content-center mt-1">
-                  <a class="refrence-link mx-1" href="${x.publisher_url}" target="_blank">refrence</a>
-                  <a id="details-btn" class="mx-1 refrence-link">details</a>
+              <div class="d-flex justify-content-center my-2">
+                  <a class="refrence-link mx-1 btn btn-outline-secondary" href="${x.publisher_url}" target="_blank btn btn-info">refrence</a>
+                  <a id="details-btn" class="mx-1 refrence-link btn btn-outline-secondary">details</a>
               </div>
-              <a>
-                  <a class="mx-1"  href="${x.source_url}" target="_blank">details link</a>
-                  <button data-fav="${num}" class="mx-1 btn border book-mark">favourite</button>  
-              </a>
+              <div class="d-flex justify-content-between">
+                  <a class="mx-1 btn btn-outline-secondary"  href="${x.source_url}" target="_blank">details link</a>
+                  <button  data-fav="${num}" data-favselector="${x.recipe_id}" class="mx-1 btn btn-outline-success  book-mark"><i class="star outline icon mr-0 " ></i></button>  
+              </div>
           </div>
       </div>   
       </div>`;
     num++;
   }
   dataContainer.insertAdjacentHTML("afterbegin", myCard);
-
   // <<<<.....................................>>>> //
   let detailsButton = document.querySelectorAll("#details-btn");
   detailsButton.forEach((element) => {
     element.addEventListener("click", (e) => showDetails(e));
   });
+  // click favourite button
   let bookMarkBtn = document.querySelectorAll(".book-mark");
   bookMarkBtn.forEach((btn) => {
     btn.addEventListener("click", test.bind(this));
   });
 }
+// <<<<.................BOOK MARK....................>>>> //
 let myFavCard = [];
+
 function test(e) {
-  let myId = e.target.dataset.fav;
-  console.log(myId);
-  myFavCard.push(finalData[e.target.dataset.fav]);
-  console.log(myFavCard);
-  addBookMark();
+  let target;
+  if (e.target.classList.contains("icon")) {
+    target = e.target.parentNode;
+  } else {
+    target = e.target;
+  }
+  target.classList.toggle("added");
+  if (target.classList.contains("added")) {
+    let myId = target.dataset.fav;
+    myFavCard.push(finalData[myId]);
+    addBookMark();
+  } else {
+    // console.log("removed");
+    // console.log(e.target.dataset.favselector);
+    let selectedFavItem = Array.from(bookMarkDiv.children);
+    // console.log(selectedFavItem);
+    for (const x of selectedFavItem) {
+      if (x.dataset.favid == target.dataset.favselector) {
+        x.remove();
+      }
+    }
+  }
+  checkHeader();
 }
 function addBookMark() {
-  let bookMarkDiv = document.querySelector("#showSingleCard");
   let favItem;
   for (const x of myFavCard) {
+    console.log(x.recipe_id);
     favItem = `
-      <div class="col-md-4">
-        <div>
-        <div>
-        <img src="${x.image_url}" class="w-100">
+      <div class="col-md-4  mb-2 px-3" data-favid="${x.recipe_id}">
+        <div class="row bookmark-card p-0">
+        <div class="col-4 p-0">
+        <img src="${x.image_url}" class="w-100" style="height:70px">
         </div>
-          <p>${x.title}</p>
+          <p class="col-8">${x.title}</p>
         </div>
       </div>  
     `;
   }
-  bookMarkDiv.insertAdjacentHTML("afterbegin", favItem);
+
+  bookMarkDiv.insertAdjacentHTML("beforeend", favItem);
+}
+function checkHeader() {
+  if (bookMarkDiv.children.length > 0) {
+    document.querySelector(".fav-title").classList.remove("hide");
+  } else {
+    document.querySelector(".fav-title").classList.add("hide");
+  }
 }
 // <<<<...................pop-up..................>>>> //
 async function showDetails(e) {
@@ -93,8 +125,7 @@ async function showDetails(e) {
   );
   let singleDataa = await singleData.json();
   singleDataa = singleDataa.recipe;
-  console.log(singleDataa);
-  let ingredients;
+  let ingredients = "";
   for (const x of singleDataa.ingredients) {
     ingredients += `<li class= "col-md-6 ingredients">${x}</li>`;
   }
@@ -128,7 +159,6 @@ function popUpFunc() {
   let exitBtn = document.querySelector(".card-exit-btn");
   bgPopUp.classList.remove("hide");
   exitBtn.addEventListener("click", function (e) {
-    // console.log(e.target.parentNode.parentNode);
     e.target.parentNode.parentNode.parentNode.classList.add("hide");
   });
   bgPopUp.addEventListener("click", function (e) {

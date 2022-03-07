@@ -3,15 +3,29 @@
   padding: 0px;
   box-sizing: border-box;
 }
-p {
+img {
+  object-fit: cover;
+}
+body {
+  font-family: "Barlow", sans-serif;
   margin-bottom: 0px !important;
+}
+main {
+  background: rgb(36, 142, 194);
+  background: linear-gradient(
+    0deg,
+    rgba(36, 142, 194, 1) 0%,
+    rgba(59, 60, 128, 1) 25%,
+    rgba(30, 157, 218, 1) 75%,
+    rgba(13, 58, 152, 1) 100%
+  );
 }
 .navbar-collapse {
   flex-direction: row-reverse;
 }
 /*  */
 .main-img {
-  min-height: 60vh;
+  min-height: 30vh;
   background-image: url("assets/main-img.jpg");
   background-size: cover;
   position: relative;
@@ -47,11 +61,21 @@ p {
   border: 2px solid red;
   color: red;
   background-color: white;
+  display: flex;
+  align-items: baseline;
+  font-size: 20px;
 }
 #search-button:hover {
   background-color: red;
   border-color: rgb(97, 3, 3);
   color: white;
+}
+/* fav */
+.fav-title {
+  font-size: 2rem;
+  color: rgb(255, 255, 255);
+  font-family: "Barlow";
+  font-weight: 300;
 }
 /*  */
 .food-card {
@@ -69,28 +93,22 @@ p {
   height: 75px;
 }
 .refrence-link {
-  text-decoration: none;
-  display: inline-block;
-  color: #000;
-  border: 2px solid #949494;
-  padding: 5px 10px;
-  background-color: #d7d7d7;
-  border-radius: 10px;
-  font-weight: bolder;
+  font-weight: 600;
+  font-family: "Barlow", sans-serif;
 }
 #details-btn {
-  color: #000;
-  display: inline-block;
-  cursor: pointer;
+  /* color: #000; */
+  /* display: inline-block; */
+  /* cursor: pointer;
   text-decoration: none;
   border: 2px solid #949494;
   padding: 5px 10px;
   background-color: #d7d7d7;
   border-radius: 10px;
-  font-weight: bolder;
+  font-weight: bolder; */
 }
 #details-btn:hover {
-  color: rgb(76, 0, 175);
+  /* color: rgb(76, 0, 175); */
 }
 .background-pop-up {
   display: flex;
@@ -163,6 +181,20 @@ p {
 .pop-up-ul {
   font-size: 1.5rem;
   line-height: 1.3;
+}
+/* book mark style */
+.added {
+  background-color: rgb(7 114 13) !important;
+  color: white;
+  font-weight: 600;
+}
+.bookmark-card {
+  padding: 0px;
+  background-color: #e2e2e2;
+  border: 2px solid black;
+  border-radius: 0px 10px 10px 0px;
+  font-size: 1rem;
+  font-weight: 600;
 }
 @media screen and (max-width: 1000px) {
   .pop-up-card {
