@@ -13,8 +13,9 @@ let bookMarkDiv = document.querySelector("#showSingleCard");
 mainButton.addEventListener("click", getSelectedData);
 let finalData = [];
 async function getSelectedData() {
+  let mainInputValue = mainInput.value;
   let selectedData = await fetch(
-    `https://forkify-api.herokuapp.com/api/search?q=pizza`
+    `https://forkify-api.herokuapp.com/api/search?q=${mainInputValue}`
   );
   selectedData = await selectedData.json();
   finalData = selectedData.recipes;
