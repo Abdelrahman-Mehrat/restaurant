@@ -214,40 +214,35 @@ main {
     width: 60%;
   }
 }
-.loader {
+/* loader style */
+.loader-contain {
   width: 100%;
   height: 100%;
   background-color: #333;
   position: absolute;
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   animation: loader 0.5s 2.2s ease-in forwards;
   z-index: 99;
 }
-.progress-bar {
-  width: 200px;
-  height: 2px;
-  background-color: darkslategray;
-  position: relative;
-  top: calc(50% - 1px);
-  left: calc(50% - 100px);
-}
-.progress-bar:before {
-  content: "";
-  display: block;
-  width: 8px;
-  height: 5px;
-  position: absolute;
-  animation: progress 2s ease-in-out forwards;
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  display: inline-block;
+  height: 120px;
+  animation: spin 2s linear infinite;
 }
 
-@keyframes loader {
-  to {
-    left: -100vw;
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-}
-@keyframes progress {
-  to {
-    border-left: 200px solid yellow;
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -1,5 +1,8 @@
 console.log("بسم الله");
-
+// loader
+window.onload = function () {
+  document.querySelector(".loader-contain").style.display = "none";
+};
 // parent
 let dataContainer = document.querySelector("#collected-data");
 // get data from api
