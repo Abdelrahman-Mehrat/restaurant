@@ -1,4 +1,5 @@
 console.log("بسم الله");
+
 // parent
 let dataContainer = document.querySelector("#collected-data");
 // get data from api
@@ -9,7 +10,6 @@ let bookMarkDiv = document.querySelector("#showSingleCard");
 mainButton.addEventListener("click", getSelectedData);
 let finalData = [];
 async function getSelectedData() {
-  let mainInputValue = mainInput.value;
   let selectedData = await fetch(
     `https://forkify-api.herokuapp.com/api/search?q=pizza`
   );
@@ -40,11 +40,10 @@ function wrapCards() {
           </div>
           <div class="extra content">
               <div class="d-flex justify-content-center my-2">
-                  <a class="refrence-link mx-1 btn btn-outline-secondary" href="${x.publisher_url}" target="_blank btn btn-info">refrence</a>
                   <a id="details-btn" class="mx-1 refrence-link btn btn-outline-secondary">details</a>
               </div>
               <div class="d-flex justify-content-between">
-                  <a class="mx-1 btn btn-outline-secondary"  href="${x.source_url}" target="_blank">details link</a>
+              <a class="refrence-link  btn btn-outline-secondary" href="${x.publisher_url}" target="_blank btn btn-info">refrence</a>
                   <button  data-fav="${num}" data-favselector="${x.recipe_id}" class="mx-1 btn btn-outline-success  book-mark"><i class="star outline icon mr-0 " ></i></button>  
               </div>
           </div>
@@ -127,7 +126,7 @@ async function showDetails(e) {
   singleDataa = singleDataa.recipe;
   let ingredients = "";
   for (const x of singleDataa.ingredients) {
-    ingredients += `<li class= "col-md-6 ingredients">${x}</li>`;
+    ingredients += `<li class= "col-md-6 px-0 ingredients">${x}</li>`;
   }
   let postCard = `
   <div class="pop-up-card">
@@ -135,12 +134,12 @@ async function showDetails(e) {
   <div class="card-exit-btn">
   x
   </div>
-        <div class="post-card-img">
+        <div class="post-card-img w-100">
             <img class="w-100" src="${singleDataa.image_url}" alt="">
         </div>
         <p class="post-card-title">${singleDataa.title}</p>
         <div class="d-flex">
-        <a class="post-card-link" target="_blank" href="${singleDataa.source_url}">Link</a>
+        <a class="btn btn-outline-secondary refrence-link mx-auto" target="_blank" href="${singleDataa.source_url}">Details</a>
         </div>
         <ul class="row f-z" > 
         ${ingredients}

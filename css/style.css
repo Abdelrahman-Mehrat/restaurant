@@ -19,6 +19,7 @@ main {
     rgba(30, 157, 218, 1) 75%,
     rgba(13, 58, 152, 1) 100%
   );
+  min-height: 100vh;
 }
 .navbar-collapse {
   flex-direction: row-reverse;
@@ -96,20 +97,7 @@ main {
   font-weight: 600;
   font-family: "Barlow", sans-serif;
 }
-#details-btn {
-  /* color: #000; */
-  /* display: inline-block; */
-  /* cursor: pointer;
-  text-decoration: none;
-  border: 2px solid #949494;
-  padding: 5px 10px;
-  background-color: #d7d7d7;
-  border-radius: 10px;
-  font-weight: bolder; */
-}
-#details-btn:hover {
-  /* color: rgb(76, 0, 175); */
-}
+
 .background-pop-up {
   display: flex;
   align-items: center;
@@ -127,6 +115,7 @@ main {
 .hide {
   visibility: hidden;
 }
+
 .pop-up-card {
   width: 50%;
   height: 85vh;
@@ -148,7 +137,8 @@ main {
   cursor: pointer;
 }
 .post-card-img {
-  width: 70%;
+  /* width: 70%; */
+  border-bottom: 4px solid #ffeb00;
   margin: 0px auto;
 }
 .post-card-img img {
@@ -160,6 +150,7 @@ main {
 }
 .post-card li {
   font-size: 1.2rem;
+  line-height: 1.6;
 }
 .post-card-link {
   padding: 5px 10px;
@@ -172,7 +163,8 @@ main {
   position: relative;
 }
 .ingredients::marker {
-  margin-right: -5px;
+  color: #6c0000;
+  font-size: 13px;
 }
 .card-header-font {
   font-size: 1.5rem;
@@ -204,7 +196,7 @@ main {
     width: 80%;
   }
   .post-card-img {
-    width: 90%;
+    /* width: 90%; */
   }
   .pop-up-ul {
     font-size: 1rem;
@@ -220,5 +212,42 @@ main {
   }
   #seacrh-input {
     width: 60%;
+  }
+}
+.loader {
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: loader 0.5s 2.2s ease-in forwards;
+  z-index: 99;
+}
+.progress-bar {
+  width: 200px;
+  height: 2px;
+  background-color: darkslategray;
+  position: relative;
+  top: calc(50% - 1px);
+  left: calc(50% - 100px);
+}
+.progress-bar:before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 5px;
+  position: absolute;
+  animation: progress 2s ease-in-out forwards;
+}
+
+@keyframes loader {
+  to {
+    left: -100vw;
+  }
+}
+@keyframes progress {
+  to {
+    border-left: 200px solid yellow;
   }
 }
