@@ -1,8 +1,38 @@
 // loader
 window.onload = function () {
   document.querySelector(".loader-contain").style.display = "none";
-  getSelectedData("pizza");
+  // getSelectedData("pizza");
+  random_test();
 };
+let random_btn = document.querySelector(".test_one");
+random_btn.addEventListener("click", random_test);
+function random_test() {
+  let random_food = [
+    "carrot",
+    "broccoli",
+    "cauliflower",
+    "cauliflower",
+    "corn",
+    "cucumber",
+    "green pepper",
+    "lettuce",
+    "mushrooms",
+    "onion",
+    "potato",
+    "red pepper",
+    "tomato",
+    "beetroot",
+    "brussel sprouts",
+    "peas",
+    "zucchini",
+    "radish",
+    "sweet potato",
+    "artichoke",
+  ];
+  let random_num = Math.floor(Math.random() * random_food.length);
+  getSelectedData(random_food[random_num]);
+  console.log(random_num);
+}
 // parent
 let dataContainer = document.querySelector("#collected-data");
 // get data from api
@@ -132,6 +162,7 @@ function checkHeader() {
   }
 }
 // <<<<...................pop-up..................>>>> //
+
 async function showDetails(e) {
   let cardDetails = e.target.parentNode.parentNode.parentNode.dataset.id;
   let singleData = await fetch(

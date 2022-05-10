@@ -3,6 +3,7 @@
   padding: 0px;
   box-sizing: border-box;
 }
+
 img {
   object-fit: cover;
 }
@@ -28,10 +29,18 @@ main {
 .navbar-collapse {
   flex-direction: row-reverse;
 }
+/* random test */
+.test_one {
+  background-color: rgb(130 6 6);
+  color: #fff;
+  font-weight: 500;
+  padding: 0px 30px;
+  font-size: 26px;
+}
 /*  */
 .main-img {
   min-height: 30vh;
-  background-image: url("assets/main-img.jpg");
+  background-image: url("assets/bg.jpg");
   background-size: cover;
   position: relative;
 }
@@ -100,6 +109,8 @@ main {
   overflow: hidden;
 }
 .food-card {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
   box-shadow: 8px 10px 20px -11px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 8px 10px 20px -11px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 8px 10px 20px -11px rgba(0, 0, 0, 0.75);
@@ -140,7 +151,8 @@ main {
   width: 50%;
   max-height: 85vh;
   border: 3px solid rgb(112, 8, 26);
-  background-color: rgb(211, 211, 211);
+  background: rgb(0 0 0 / 50%);
+  color: white;
   position: relative;
   z-index: 101;
   overflow-y: scroll;
@@ -151,8 +163,8 @@ main {
   top: 0px;
   font-size: 1.5rem;
   font-weight: bold;
-  background-color: red;
-  border-radius: 10px;
+  background-color: rgb(157, 0, 0);
+  border-radius: 50%;
   padding: 4px 9px;
   color: white;
   right: 0px;
@@ -160,7 +172,7 @@ main {
 }
 .post-card-img {
   /* width: 70%; */
-  border-bottom: 4px solid #ffeb00;
+  border-bottom: 4px solid #000000;
   margin: 0px auto;
 }
 .post-card-img img {
@@ -168,6 +180,7 @@ main {
 }
 .post-card .post-card-title {
   font-size: 1.8rem;
+  font-weight: 600;
   text-align: center;
 }
 .post-card li {
@@ -271,4 +284,14 @@ main {
   100% {
     transform: rotate(360deg);
   }
+}
+.book-mark {
+  border: 2px solid #198754;
+}
+.heart {
+  font-weight: bold;
+}
+.refrence-link {
+  border-color: rgb(255, 255, 255);
+  color: white;
 }
