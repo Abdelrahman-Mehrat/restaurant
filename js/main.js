@@ -210,3 +210,15 @@ function popUpFunc() {
     if (e.target == bgPopUp) bgPopUp.classList.add("hide");
   });
 }
+// AJAX test
+// console.log("aaaa");
+// let xml = new XMLHttpRequest();
+// xml.open("GET", `https://forkify-api.herokuapp.com/api/search?q=pizza`);
+// xml.send();
+// xml.onreadystatechange = () => {
+//   if (xml.readyState == 4 && xml.status == 200) {
+//     console.log("TRUE");
+//   } else {
+//     console.log("FALSE");
+//   }
+// };
