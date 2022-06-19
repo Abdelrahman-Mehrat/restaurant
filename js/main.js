@@ -1,7 +1,6 @@
 // loader
 window.onload = function () {
   document.querySelector(".loader-contain").style.display = "none";
-  // getSelectedData("pizza");
   random_test();
 };
 let random_btn = document.querySelector(".test_one");
@@ -50,6 +49,7 @@ mainButton.addEventListener("click", getSelectedData);
 let finalData = [];
 
 async function getSelectedData(meal) {
+  dataContainer.innerHTML = "";
   let mainInputValue = mainInput.value;
   mainInputValue != "" ? (meal = mainInputValue) : "";
   console.log(mainInputValue);
@@ -71,27 +71,27 @@ function wrapCards() {
     myCard += `
       <div class="col-lg-4 col-md-6 col-sm-6 col-12  p-3 d-flex food-card_parent" >
         <div class="card p-3 food-card w-100" data-id="${x.recipe_id}">
-          <div class="blurring dimmable image card_img_parent">
-              <img class="w-100 card card_img" src="${img}">
-          </div>
-          <div class="content">
-              <p class="header card-header-font mb-1">${x.title}</p>
-              <div class="meta ">
-                  <span class="date card-p-font">Publisher: ${x.publisher}</span>
-              </div>
-          </div>
-          <div class="extra content">
-              <div class="d-flex justify-content-center my-2">
-                  <a id="details-btn" class="mx-1 refrence-link btn btn-outline-secondary">details</a>
-              </div>
+        <div>
+        
+        <div class="blurring dimmable image card_img_parent">
+        <img class="w-100 card card_img" src="${img}">
+        </div>
+        <div class="content mb-2">
+        <p class="header card-header-font mb-1">${x.title}</p>
+        <div class="meta ">
+        <span class="date card-p-font">Publisher: ${x.publisher}</span>
+        </div>
+        </div>
+        </div>
+          
+              
               <div class="d-flex justify-content-between">
-              <a class="refrence-link  btn btn-outline-secondary" href="${x.publisher_url}" target="_blank btn btn-info">refrence</a>
-                  <button  data-fav="${num}" data-favselector="${x.recipe_id}" class="mx-1 btn btn-outline-success  book-mark">
-                  <i class="heart outline icon"></i>
-                  
-                  </button>  
+              
+                  <a id="details-btn" class="mx-1 refrence-link btn btn-outline-secondary">details</a>
+              <button  data-fav="${num}" data-favselector="${x.recipe_id}" class="mx-1 btn btn-outline-success  book-mark">
+              <i class="heart outline icon"></i>    
+              </button>  
               </div>
-          </div>
       </div>   
       </div>`;
     num++;
@@ -164,7 +164,7 @@ function checkHeader() {
 // <<<<...................pop-up..................>>>> //
 
 async function showDetails(e) {
-  let cardDetails = e.target.parentNode.parentNode.parentNode.dataset.id;
+  let cardDetails = e.target.parentNode.parentNode.dataset.id;
   let singleData = await fetch(
     `https://forkify-api.herokuapp.com/api/get?rId=${cardDetails}`
   );
@@ -178,14 +178,14 @@ async function showDetails(e) {
   <div class="pop-up-card">
   <div class="post-card">
   <div class="card-exit-btn">
-  x
+  <i class="m-0 window close outline icon"></i>
   </div>
         <div class="post-card-img w-100">
             <img class="w-100" src="${singleDataa.image_url}" alt="">
         </div>
-        <p class="post-card-title">${singleDataa.title}</p>
-        <div class="d-flex">
-        <a class="btn btn-outline-secondary refrence-link mx-auto" target="_blank" href="${singleDataa.source_url}">Details</a>
+        <p class="post-card-title mb-1">${singleDataa.title}</p>
+        <div class="d-flex mb-1">
+        <a class="btn  refrence-link2 mx-auto" target="_blank" href="${singleDataa.source_url}">Details</a>
         </div>
         <ul class="row f-z ml-0 mr-0 pb-3" > 
         ${ingredients}
@@ -222,3 +222,4 @@ function popUpFunc() {
 //     console.log("FALSE");
 //   }
 // };
+// ref in cards
