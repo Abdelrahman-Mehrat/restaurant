@@ -53,9 +53,7 @@ async function getSelectedData(meal) {
   let mainInputValue = mainInput.value;
   mainInputValue != "" ? (meal = mainInputValue) : "";
   console.log(mainInputValue);
-  let selectedData = await fetch(
-    `https://forkify-api.herokuapp.com/api/search?q=${meal}`
-  );
+  let selectedData = await fetch(`https://forkify-api.herokuapp.com/api/search?q=${meal}`);
   selectedData = await selectedData.json();
   finalData = selectedData.recipes;
   bookMarkDiv.innerHTML = "";
@@ -71,28 +69,24 @@ function wrapCards() {
     myCard += `
       <div class="col-lg-4 col-md-6 col-sm-6 col-12  p-3 d-flex food-card_parent" >
         <div class="card p-3 food-card w-100" data-id="${x.recipe_id}">
-        <div>
-        
-        <div class="blurring dimmable image card_img_parent">
-        <img class="w-100 card card_img" src="${img}">
-        </div>
-        <div class="content mb-2">
-        <p class="header card-header-font mb-1">${x.title}</p>
-        <div class="meta ">
-        <span class="date card-p-font">Publisher: ${x.publisher}</span>
-        </div>
-        </div>
-        </div>
-          
-              
-              <div class="d-flex justify-content-between">
-              
-                  <a id="details-btn" class="mx-1 refrence-link btn btn-outline-secondary">details</a>
-              <button  data-fav="${num}" data-favselector="${x.recipe_id}" class="mx-1 btn btn-outline-success  book-mark">
-              <i class="heart outline icon"></i>    
-              </button>  
+          <div>
+            <div class="blurring dimmable image card_img_parent">
+            <img class="w-100 card card_img" src="${img}">
+            </div>
+            <div class="content mb-2">
+              <p class="header card-header-font mb-1">${x.title}</p>
+              <div class="meta ">
+              <span class="date card-p-font">Publisher: ${x.publisher}</span>
               </div>
-      </div>   
+            </div>
+          </div>   
+          <div class="d-flex justify-content-between">              
+            <a id="details-btn" class="mx-1 refrence-link btn btn-outline-secondary">details</a>
+            <button  data-fav="${num}" data-favselector="${x.recipe_id}" class="mx-1 btn btn-outline-success  book-mark">
+            <i class="heart outline icon"></i>    
+            </button>  
+          </div>
+        </div>   
       </div>`;
     num++;
   }
@@ -124,10 +118,7 @@ function test(e) {
     myFavCard.push(finalData[myId]);
     addBookMark();
   } else {
-    // console.log("removed");
-    // console.log(e.target.dataset.favselector);
     let selectedFavItem = Array.from(bookMarkDiv.children);
-    // console.log(selectedFavItem);
     for (const x of selectedFavItem) {
       if (x.dataset.favid == target.dataset.favselector) {
         x.remove();
@@ -139,19 +130,17 @@ function test(e) {
 function addBookMark() {
   let favItem;
   for (const x of myFavCard) {
-    // console.log(x.recipe_id);
     favItem = `
       <div class="col-md-4  mb-2 px-3" data-favid="${x.recipe_id}">
         <div class="row bookmark-card p-0">
         <div class="col-4 p-0">
-        <img src="${x.image_url}" class="w-100" style="height:70px">
+          <img src="${x.image_url}" class="w-100" style="height:70px">
         </div>
           <p class="col-8">${x.title}</p>
         </div>
       </div>  
     `;
   }
-
   bookMarkDiv.insertAdjacentHTML("beforeend", favItem);
 }
 function checkHeader() {
@@ -165,9 +154,7 @@ function checkHeader() {
 
 async function showDetails(e) {
   let cardDetails = e.target.parentNode.parentNode.dataset.id;
-  let singleData = await fetch(
-    `https://forkify-api.herokuapp.com/api/get?rId=${cardDetails}`
-  );
+  let singleData = await fetch(`https://forkify-api.herokuapp.com/api/get?rId=${cardDetails}`);
   let singleDataa = await singleData.json();
   singleDataa = singleDataa.recipe;
   let ingredients = "";
@@ -176,22 +163,22 @@ async function showDetails(e) {
   }
   let postCard = `
   <div class="pop-up-card">
-  <div class="post-card">
-  <div class="card-exit-btn">
-  <i class="m-0 window close outline icon"></i>
-  </div>
-        <div class="post-card-img w-100">
-            <img class="w-100" src="${singleDataa.image_url}" alt="">
-        </div>
-        <p class="post-card-title mb-1">${singleDataa.title}</p>
-        <div class="d-flex mb-1">
+    <div class="post-card">
+      <div class="card-exit-btn">
+        <i class="m-0 window close outline icon"></i>
+      </div>
+      <div class="post-card-img w-100">
+          <img class="w-100" src="${singleDataa.image_url}" alt="">
+      </div>
+      <p class="post-card-title mb-1">${singleDataa.title}</p>
+      <div class="d-flex mb-1">
         <a class="btn  refrence-link2 mx-auto" target="_blank" href="${singleDataa.source_url}">Details</a>
-        </div>
-        <ul class="row f-z ml-0 mr-0 pb-3" > 
-        ${ingredients}
-        </ul>
-  </div>
+      </div>
+      <ul class="row f-z ml-0 mr-0 pb-3" > 
+      ${ingredients}
+      </ul>
     </div>
+  </div>
   `;
   let bgPopUp = document.querySelector(".background-pop-up");
   bgPopUp.innerHTML = postCard;
@@ -210,16 +197,3 @@ function popUpFunc() {
     if (e.target == bgPopUp) bgPopUp.classList.add("hide");
   });
 }
-// AJAX test
-// console.log("aaaa");
-// let xml = new XMLHttpRequest();
-// xml.open("GET", `https://forkify-api.herokuapp.com/api/search?q=pizza`);
-// xml.send();
-// xml.onreadystatechange = () => {
-//   if (xml.readyState == 4 && xml.status == 200) {
-//     console.log("TRUE");
-//   } else {
-//     console.log("FALSE");
-//   }
-// };
-// ref in cards
